@@ -10,40 +10,15 @@ router.get('/', (req, res, next) => {
   .then(docs => {
     res.status(200).json({
       msg: 'Success Get All TodoList',
-      docs
+      docs,
     });
   })
   .catch(err => {
     res.status(500).json({
-      msg: err
+      msg: err,
     });
   });
 });
-
-router.get('/:id', (req, res, next) => {
-    const id = req.params.id;
-
-    Todo.findById(id)
-    .select('title description isDone ps _id')
-    .exec()
-    .then(doc => {
-      if(doc){
-        res.status(200).json({
-          msg: `'Success Get ${id} TodoList'`,
-          doc
-        });
-      }else {
-        res.status(404).json({
-          msg: 'No Data',
-        });
-      }
-    })
-    .catch(err => {
-      res.status(500).json({
-        msg: err,
-      });
-    });
-})
 
 router.post('/', (req, res, next) => {
   
@@ -64,18 +39,39 @@ router.post('/', (req, res, next) => {
       isDone: result.isDone,
       ps: result.ps,
       _id: result._id,
-    })
+    });
   })
   .catch(err => {
     res.status(500).json({
       msg: err,
-    })
+    });
   });
+});
 
-  // res.status(200).json({
-  //   msg: 'Success Create TodoList',
-  // })
-})
+router.get('/:id', (req, res, next) => {
+    const id = req.params.id;
+
+    Todo.findById(id)
+    .select('title description isDone ps _id')
+    .exec()
+    .then(doc => {
+      if(doc){
+        res.status(200).json({
+          msg: `'Success Get ${id} TodoList'`,
+          doc,
+        });
+      }else {
+        res.status(404).json({
+          msg: 'No Data',
+        });
+      }
+    })
+    .catch(err => {
+      res.status(500).json({
+        msg: err,
+      });
+    });
+});
 
 router.delete('/:id', (req, res, next) => {
   const id = req.params.id;
@@ -87,16 +83,15 @@ router.delete('/:id', (req, res, next) => {
   .then(result => {
     res.status(200).json({
       msg: 'Success Delete TodoList',
-      result
-    })
+      result,
+    });
   })
   .catch(err => {
     res.status(500).json({
       msg: err,
-    })
-  })
-
-})
+    });
+  });
+});
 
 router.patch('/:id', (req, res, next) => {
 
@@ -114,13 +109,13 @@ router.patch('/:id', (req, res, next) => {
     res.status(200).json({
       msg: 'Success Update TodoList',
       result,
-    })
+    });
   })
   .catch(err => {
     res.status(500).json({
       msg: err,
-    })
-  })  
-})
+    });
+  });
+});
 
 module.exports = router;

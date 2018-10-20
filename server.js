@@ -1,6 +1,4 @@
 const http = require('http');
-// const app = require('./app');
-
 const express = require('express');
 const app = express();
 const bodyParse = require('body-parser');
@@ -19,29 +17,15 @@ app.use(bodyParse.urlencoded({
 }))
 app.use(bodyParse.json());
 
-// CORS
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
-//   if(req.method === 'OPTOINS') {
-//     res.header('Access-Control-Allow-Methods', 'PUT, POST, PATCH, DELETE, GET');
-//     return res.status(200).json({
-
-//     });
-//   }
-
-//   next();
-// })
-
-//Allow CORS
+//CORS
 app.all('*',function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
   if (req.method == 'OPTIONS') {
-    res.send(200); ///让options请求快速返回/
+    res.send(200);
   }
   else {
     next();

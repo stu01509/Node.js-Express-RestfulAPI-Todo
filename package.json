@@ -1,13 +1,13 @@
 {
   "name": "restfulapi-todolist",
   "version": "1.0.0",
-  "description": "",
+  "description": "restfulapi todolist",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js"
   },
-  "author": "",
+  "author": "Cliff Su",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
