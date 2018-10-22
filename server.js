@@ -17,7 +17,6 @@ app.use(bodyParse.urlencoded({
 }))
 app.use(bodyParse.json());
 
-
 //CORS
 app.all('*',function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -53,6 +52,5 @@ const port = process.env.port || 3000;
 const server = http.createServer(app);
 
 server.listen(port, function(){
-  console.log(`Server is ruuning in ${port} Port.`);
-  
+  console.log(`Server is ruuning in ${port} Port.`);  
 })
